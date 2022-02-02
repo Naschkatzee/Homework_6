@@ -11,7 +11,7 @@ import pathlib
 #       f'{randint (1,31)}.txt').touch ()
 
 parser = argparse.ArgumentParser()
-parser.add_argument('division', help = 'Разделитесь в названии', type = str)
+parser.add_argument('division', help = 'Разделитель в названии', type = str)
 
 args = parser.parse_args()
 
