@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 from random import randint
 import pathlib
@@ -9,10 +10,18 @@ import pathlib
 #       f'{randint (1,12)}-'
 #       f'{randint (1,31)}.txt').touch ()
 
+parser = argparse.ArgumentParser()
+parser.add_argument('division', help = 'Разделитесь в названии', type = str)
+
+args = parser.parse_args()
+
+division = args.division
+
+
 contents = pathlib.Path('main.py').iterdir()
 for path in contents:
   if path.is_file ():
-     pathlib.Path.rename = path.stem.replace('-', '/') + path.suffix
+     pathlib.Path.rename = path.stem.replace('-', division) + path.suffix
      print (pathlib.Path.rename)
 
 
