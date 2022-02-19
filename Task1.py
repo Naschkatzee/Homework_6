@@ -1,5 +1,9 @@
 import argparse
 from datetime import datetime, date, time
+from loguru import logger
+import logging
+
+logger.add ('debug.log', format = '{time} {level} {message}', level = 'DEBUG')
 
 
 parser = argparse.ArgumentParser()
@@ -17,7 +21,19 @@ today = date.today()
 new_year_date = date(years, 12, 31)
 time_to_ny = new_year_date - today
 a = 24 - hours  # current_hour
-print(f'New year is {time_to_ny.days} days and {a} hours away')
+
+@logger.catch
+def main ():
+    print(f'New year is {time_to_ny.days} days and {a} hours away')
+
+main ()
+
+import logging
+
+logger = logging.getLogger()
+handler = logging.FileHandler('logs.log')
+logger.addHandler(handler)
+logger.error('Our First Log Message')
 
 
 
