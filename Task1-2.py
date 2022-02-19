@@ -2,6 +2,10 @@ import argparse
 import random 
 import enum
 from enum import Enum
+from loguru import logger
+import logging
+
+logger.add ('debug.log', format = '{time} {level} {message}', level = 'DEBUG')
 
 
 parser = argparse.ArgumentParser()
@@ -26,7 +30,17 @@ class Toys (Enum):
 
 toys = random.choice (list(Toys))
  
-print ('The toy is' , color.value + ' ' + toys.value)
+@logger.catch
+def main ():
+    print ('The toy is' , color.value + ' ' + toys.value)
 
+main ()
+
+import logging
+
+logger = logging.getLogger()
+handler = logging.FileHandler('logs.log')
+logger.addHandler(handler)
+logger.error('Our Second Log Message')
 
 
